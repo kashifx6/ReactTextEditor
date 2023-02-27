@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import About from "./Components/About";
 import Alert from "./Components/Alert";
 import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./index.css";
 
 function App() {
@@ -27,32 +25,22 @@ function App() {
     }
   };
   return (
-    <Router>
-      <div>
-        <Navbar
-          title="textutils"
+    <div>
+      <Navbar
+        title="ReactTextEditor"
+        mode={mode}
+        toggleMode={toggleMode}
+        modeText={modeText}
+      />
+      <Alert alert={alert} />
+      <div className="container">
+        <TextForm
+          heading="Enter your text to analyze"
+          alert={alert}
           mode={mode}
-          toggleMode={toggleMode}
-          modeText={modeText}
         />
-        <Alert alert={alert} />
-        <div className="container">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <TextForm
-                  heading="Enter your text to analyze"
-                  alert={alert}
-                  mode={mode}
-                />
-              }
-            />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </div>
       </div>
-    </Router>
+    </div>
   );
 }
 
